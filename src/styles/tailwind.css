@@ -1,0 +1,63 @@
+@import 'tailwindcss';
+
+@plugin '@tailwindcss/forms';
+
+@theme {
+  --font-sans:    'Inter', system-ui, sans-serif;
+  --font-serif:   'EB Garamond', Georgia, serif;
+  --font-display: 'Gloock', Georgia, serif;
+
+  --color-ew-white:  #FAFAFF;
+  --color-ew-light:  #EEF0F2;
+  --color-ew-ink:    #1C1C1C;
+  --color-ew-mist:   #DADDD8;
+
+  --color-white:     #FAFAFF;
+  --color-black:     #1C1C1C;
+  --color-gray-50:   #FAFAFF;
+  --color-gray-100:  #EEF0F2;
+  --color-gray-200:  #DADDD8;
+  --color-gray-300:  #DADDD8;
+  --color-gray-400:  #DADDD8;
+  --color-gray-500:  #DADDD8;
+  --color-gray-600:  #1C1C1C;
+  --color-gray-700:  #1C1C1C;
+  --color-gray-800:  #1C1C1C;
+  --color-gray-900:  #1C1C1C;
+
+  --tracking-editorial: -0.01em;
+
+  --text-label:   0.625rem;
+  --text-caption: 0.75rem;
+  --text-body:    0.875rem;
+  --text-reading: 1rem;
+  --text-lead:    1.125rem;
+  --text-title:   1.5rem;
+  --text-heading: 2.25rem;
+  --text-display: 3rem;
+  --text-popup:   clamp(1.8rem, 2.8vw, 2.4rem);
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+
+  html {
+    font-family: var(--font-sans);
+    background-color: var(--color-ew-white);
+    color: var(--color-ew-ink);
+  }
+
+  body {
+    margin: 0;
+    width: 100%;
+    font-family: var(--font-sans);
+    background-color: var(--color-ew-white);
+    color: var(--color-ew-ink);
+  }
+}
