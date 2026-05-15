@@ -1,0 +1,107 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { articles } from "../../data/articles";
+
+export function getStaticPaths() {
+  return articles.map((a) => ({ params: { slug: a.slug } }));
+}
+
+const { slug } = Astro.params;
+const article = articles.find((a) => a.slug === slug)!;
+const related = articles.filter((a) => a.slug !== slug && a.category === article.category).slice(0, 3);
+const fallbackRelated = articles.filter((a) => a.slug !== slug).slice(0, 3);
+const relatedArticles = related.length >= 2 ? related : fallbackRelated;
+---
+
+<MainLayout title={article.title.length > 70 ? article.title.slice(0, 67) + '...' : article.title}>
+  <article>
+
+    <!-- Artikel header -->
+    <header class="px-12 pt-14 pb-10 max-w-3xl mx-auto text-center">
+      <a href="/artikler" class="text-[10px] tracking-widest uppercase text-gray-400 hover:text-black transition-colors mb-6 inline-block">← Tilbage til artikler</a>
+
+      <div class="mb-4">
+        <span class="text-[10px] tracking-widest uppercase text-gray-400">{article.category}</span>
+      </div>
+
+      <h1 class="text-4xl font-bold leading-tight mb-6">{article.title}</h1>
+
+      <p class="text-lg text-gray-600 leading-relaxed mb-8">{article.standfirst}</p>
+
+      <!-- Byline -->
+      <div class="flex flex-wrap items-center justify-center gap-3 text-[10px] tracking-widest uppercase text-gray-400 border-t border-b border-gray-100 py-4">
+        <span>Af {article.author}</span>
+        {article.photographer && <><span>·</span><span>Foto: {article.photographer}</span></>}
+        {article.styling && <><span>·</span><span>Styling: {article.styling}</span></>}
+        {article.hairMakeup && <><span>·</span><span>Hår & makeup: {article.hairMakeup}</span></>}
+        <span>·</span>
+        <span>{article.date}</span>
+        <span>·</span>
+        <span>{article.readTime} læsning</span>
+      </div>
+    </header>
+
+    <!-- Hero billede -->
+    <div class="w-full overflow-hidden" style="height: 560px;">
+      <img src={article.img} alt={article.title} class="w-full h-full object-cover" />
+    </div>
+
+    <!-- Artikel indhold -->
+    <div class="max-w-2xl mx-auto px-6 py-14">
+      {article.body.map((block) => {
+        if (block.type === "p") return (
+          <p class="text-base leading-8 text-gray-600 mb-6">{block.text}</p>
+        );
+        if (block.type === "h2") return (
+          <h2 class="text-xl font-bold mt-12 mb-4">{block.text}</h2>
+        );
+        if (block.type === "quote") return (
+          <blockquote class="border-l-2 border-black pl-6 my-10">
+            <p class="text-xl font-light leading-relaxed text-gray-800 italic">"{block.text}"</p>
+          </blockquote>
+        );
+        if (block.type === "caption") return (
+          <p class="text-xs text-gray-400 text-center leading-relaxed my-6 px-8">{block.text}</p>
+        );
+      })}
+
+      <!-- Tags -->
+      <div class="flex flex-wrap gap-2 mt-14 pt-8 border-t border-gray-100">
+        {article.tags.map((tag) => (
+          <span class="text-[10px] tracking-widest uppercase border border-gray-200 px-2 py-1 text-gray-400 hover:border-black hover:text-black transition-colors cursor-pointer">{tag}</span>
+        ))}
+      </div>
+
+      <!-- Del artikel -->
+      <div class="flex items-center gap-4 mt-8 pt-6 border-t border-gray-100">
+        <span class="text-[10px] tracking-widest uppercase text-gray-400">Del</span>
+        <a href="#" class="text-[10px] tracking-widest uppercase text-gray-400 hover:text-black transition-colors">Facebook</a>
+        <a href="#" class="text-[10px] tracking-widest uppercase text-gray-400 hover:text-black transition-colors">X / Twitter</a>
+        <a href="#" class="text-[10px] tracking-widest uppercase text-gray-400 hover:text-black transition-colors">Kopiér link</a>
+      </div>
+    </div>
+
+  </article>
+
+  <!-- Relaterede artikler -->
+  <section class="border-t border-gray-100 px-6 md:px-12 py-10 md:py-16">
+    <p class="text-center text-xs tracking-widest uppercase text-gray-400 mb-12">Læs også</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 md:gap-x-8 gap-y-8 md:gap-y-10">
+      {relatedArticles.map((rel) => (
+        <a href={`/artikler/${rel.slug}`} class="group flex flex-col">
+          <div class="overflow-hidden bg-gray-100 aspect-[16/10] mb-4">
+            <img src={rel.img} alt={rel.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </div>
+          <span class="text-[10px] tracking-widest uppercase text-gray-400 mb-2 block">{rel.category}</span>
+          <h3 class="text-sm font-semibold leading-snug mb-2 group-hover:underline underline-offset-2">{rel.title}</h3>
+          <div class="flex items-center gap-2 text-[10px] tracking-widest uppercase text-gray-400 mt-auto">
+            <span>{rel.author}</span>
+            <span>·</span>
+            <span>{rel.readTime}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+</MainLayout>
