@@ -1,0 +1,100 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+const sections = [
+  {
+    label: "Kampagner",
+    images: [
+      { src: "/kampagner/Acne x Willow_FW24 Campaign_No Logo_2x3_1.jpg",  caption: "Acne Studios × Willow Smith, FW24" },
+      { src: "/kampagner/Acne x willow_FW24 Campaign_No Logo_2x3_7.jpg",  caption: "Acne Studios × Willow Smith, FW24" },
+      { src: "/kampagner/Acne x willowFW24 Campaign_No Logo_2x3_8.jpg",   caption: "Acne Studios × Willow Smith, FW24" },
+      { src: "/kampagner/Chanel x Margot.jpeg",                           caption: "Chanel × Margot Robbie" },
+      { src: "/kampagner/Kendall x CK.jpg",                               caption: "Calvin Klein × Kendall Jenner" },
+      { src: "/kampagner/timberland x NAOMI-02-FINAL.jpg",                caption: "Timberland × Naomi Campbell" },
+      { src: "/kampagner/GANNI_+ Ricci.jpg",                              caption: "Ganni × Christina Ricci" },
+      { src: "/kampagner/GANNI_x ricci.jpg",                              caption: "Ganni × Ricci" },
+      { src: "/kampagner/ICONIC-Jamie Morgan.jpg",                        caption: "Jamie Morgan" },
+    ],
+  },
+  {
+    label: "Catwalks",
+    images: [
+      { src: "/billeder/GettyImages-2173392850.jpg", caption: "" },
+      { src: "/billeder/GettyImages-2173337768.jpg", caption: "" },
+      { src: "/billeder/GettyImages-2174656424.jpg", caption: "" },
+      { src: "/billeder/GettyImages-2174320881.jpg", caption: "" },
+      { src: "/billeder/GettyImages-2175025212.jpg", caption: "" },
+      { src: "/billeder/GettyImages-2175236789.jpg", caption: "" },
+      { src: "/billeder/GettyImages-2158151352.jpg", caption: "" },
+      { src: "/billeder/GettyImages-627599612.jpg",  caption: "" },
+    ],
+  },
+  {
+    label: "Some & Streetstyle",
+    images: [
+      { src: "/billeder/GettyImages-1848360615.jpg", caption: "" },
+      { src: "/billeder/GettyImages-1471729712.jpg", caption: "" },
+      { src: "/billeder/GettyImages-2178700684.jpg", caption: "" },
+      { src: "/billeder/GettyImages-2173162126.jpg", caption: "" },
+      { src: "/billeder/GettyImages-860623740.jpg",  caption: "" },
+    ],
+  },
+  {
+    label: "Lookbooks",
+    images: [
+      { src: "/billeder/03.jpg",                                         caption: "" },
+      { src: "/billeder/04.jpg",                                         caption: "" },
+      { src: "/billeder/08.jpg",                                         caption: "" },
+      { src: "/billeder/3B11B4A6-6733-4EAE-93A8-B2CFC7F9090E.JPG",     caption: "" },
+      { src: "/billeder/E469D638-59D4-4547-B28E-FDAB683CE12F.JPG",      caption: "" },
+      { src: "/billeder/GettyImages-1473362160.jpg",                     caption: "" },
+    ],
+  },
+  {
+    label: "Kunst & Arkiv",
+    images: [
+      { src: "/billeder/GettyImages-160161046.jpg",  caption: "Sophia Loren" },
+      { src: "/billeder/GettyImages-111301247.jpg",  caption: "" },
+      { src: "/billeder/GettyImages-74258633.jpg",   caption: "Leonard Cohen" },
+      { src: "/billeder/GettyImages-86203874.jpg",   caption: "Leonard Cohen" },
+      { src: "/billeder/GettyImages-1155693767.jpg", caption: "Egon Schiele" },
+      { src: "/billeder/GettyImages-1199903651.jpg", caption: "Vincent van Gogh" },
+      { src: "/billeder/GettyImages-1320417546.jpg", caption: "" },
+      { src: "/billeder/GettyImages-1435658516.jpg", caption: "" },
+      { src: "/billeder/PM5ATH.jpg",                caption: "" },
+    ],
+  },
+];
+---
+
+<MainLayout title="Galleri">
+
+  <!-- Hero -->
+  <section class="border-b border-gray-100 px-12 py-14 text-center">
+    <p class="text-[10px] tracking-widest uppercase text-gray-400">Galleri</p>
+  </section>
+
+  <!-- Sektioner -->
+  {sections.map((section) => (
+    <section class="border-b border-gray-100">
+      <div class="px-12 pt-16 pb-10">
+        <p class="text-[10px] tracking-widest uppercase text-gray-400">{section.label}</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3">
+        {section.images.map((img) => (
+          <div class="flex flex-col items-center p-4 md:p-8 border-t border-gray-100">
+            <img
+              src={img.src}
+              alt={img.caption}
+              class="w-full h-auto max-h-[520px] object-contain hover:scale-[1.02] transition-transform duration-500"
+            />
+            {img.caption && (
+              <p class="mt-3 text-[10px] tracking-widest uppercase text-gray-400 self-start">{img.caption}</p>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+  ))}
+
+</MainLayout>
