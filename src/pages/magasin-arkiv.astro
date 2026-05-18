@@ -1,0 +1,147 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+const magazines = [
+  // 2026
+  { issue: 341, year: 2026, img: "/forsider/EUW 2026 341 ForsideFinal.jpg"                      },
+  { issue: 340, year: 2026, img: "/forsider/EUW 2026 340 ForsideFinal.jpg"                      },
+  { issue: 339, year: 2026, img: "/forsider/EUW 2026 339 Forside_Standing.jpg"                  },
+  { issue: 338, year: 2026, img: "/forsider/EUW 2026 338 ForsideFinal.jpg"                      },
+  { issue: 337, year: 2026, img: "/forsider/EUW 2026 337 Forside_standing.jpg"                  },
+  { issue: 336, year: 2026, img: "/forsider/EUW 2026 336 Forside.jpg"                           },
+  // 2025
+  { issue: 335, year: 2025, img: "/forsider/EUW 2025 335 ForsideJUL.jpg"                        },
+  { issue: 334, year: 2025, img: "/forsider/EUW 2025 334 Forside.jpg"                           },
+  { issue: 333, year: 2025, img: "/forsider/EUW 2025 333 ForsideFinal.jpg"                      },
+  { issue: 332, year: 2025, img: "/forsider/EUW 2025 332 Forside.jpg"                           },
+  { issue: 331, year: 2025, img: "/forsider/EUW 2025 331 Forside_pool.jpg"                      },
+  { issue: 330, year: 2025, img: "/forsider/EUW 2025 330 ForsideFinal.jpg"                      },
+  { issue: 329, year: 2025, img: "/forsider/EUW 2025 329 ForsideFinal.jpg"                      },
+  { issue: 328, year: 2025, img: "/forsider/EUW 2025 328 ForsideFinal_spot.jpg"                 },
+  { issue: 327, year: 2025, img: "/forsider/EUW 2025 327 Forside.jpg"                           },
+  { issue: 326, year: 2025, img: "/forsider/EUW 2025 326 ForsideFinal.jpg"                      },
+  { issue: 325, year: 2025, img: "/forsider/25_dk_euw_325_001_ustreg.jpg"                       },
+  // 2024
+  { issue: 324, year: 2024, img: "/forsider/24_dk_euw_324_001_Bathtub.jpg"                      },
+  { issue: 323, year: 2024, img: "/forsider/EUW 2024 323 DecForsideFinal.jpg"                   },
+  { issue: 322, year: 2024, img: "/forsider/EUW 2024 322 ForsideFinal.jpg"                      },
+  { issue: 321, year: 2024, img: "/forsider/EUW 2024 321 ForsideFinal.jpg"                      },
+  { issue: 320, year: 2024, img: "/forsider/EUW 2024 320 ForsideFinal.jpg"                      },
+  { issue: 319, year: 2024, img: "/forsider/EUW 2024 319 ForsideEmma.jpg"                       },
+  { issue: 318, year: 2024, img: "/forsider/EUW 2024 318 ForsideFinal_ustreg.jpg"               },
+  { issue: 317, year: 2024, img: "/forsider/EUW 2024 317 ForsideFinal3.jpg"                     },
+  { issue: 316, year: 2024, img: "/forsider/EUW 2024 316 ForsideFinal.jpg"                      },
+  { issue: 315, year: 2024, img: "/forsider/EUW 2024 315 ForsideFinal_spot.jpg"                 },
+  { issue: 314, year: 2024, img: "/forsider/24_dk_euw_314_001_clean.jpg"                        },
+  { issue: 313, year: 2024, img: "/forsider/24_dk_euw_313_001_sitting_spot-kopi.jpg"            },
+  // 2023
+  { issue: 312, year: 2023, img: "/forsider/EUW 2023 312 ForsideFinal.jpg"                      },
+  { issue: 311, year: 2023, img: "/forsider/EUW 2023 311 Forside_spot.jpg"                      },
+  { issue: 310, year: 2023, img: "/forsider/EUW 2023 310 Forside_suit.jpg"                      },
+  { issue: 309, year: 2023, img: "/forsider/EUW 2023 309 Forside_spot.jpg"                      },
+  { issue: 308, year: 2023, img: "/forsider/EUW 2023 308 Forside.jpg"                           },
+  { issue: 307, year: 2023, img: "/forsider/EUW 2023 307 ForsideFINAL_spot.jpg"                 },
+];
+
+const years = [...new Set(magazines.map(m => m.year))].sort((a, b) => b - a);
+---
+
+<MainLayout title="Magasin Arkiv">
+  <div x-data="{ activeYear: 'alle', prompt: false, selected: null }">
+
+    <!-- År filter -->
+    <div class="border-b border-gray-200 px-12 py-4 flex items-center gap-6 overflow-x-auto">
+      <button
+        type="button"
+        @click="activeYear = 'alle'"
+        :class="activeYear === 'alle' ? 'bg-black text-white px-2.5 py-1' : 'text-gray-400 hover:text-black'"
+        class="text-[10px] tracking-widest uppercase transition-colors duration-200 whitespace-nowrap flex-shrink-0"
+      >Alle</button>
+      {years.map(year => (
+        <button
+          type="button"
+          @click={`activeYear = ${year}`}
+          :class={`activeYear === ${year} ? 'bg-black text-white px-2.5 py-1' : 'text-gray-400 hover:text-black'`}
+          class="text-[10px] tracking-widest uppercase transition-colors duration-200 whitespace-nowrap flex-shrink-0"
+        >{year}</button>
+      ))}
+    </div>
+
+    <!-- Grid -->
+    <div class="bg-gray-100 min-h-screen px-4 md:px-10 py-8 md:py-12">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
+        {magazines.map((mag) => (
+          <div
+            x-show={`activeYear === 'alle' || activeYear === ${mag.year}`}
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 scale-95"
+            x-transition:enter-end="opacity-100 scale-100"
+            class="group"
+          >
+            <button
+              type="button"
+              class="w-full text-left bg-white p-4 flex flex-col cursor-pointer"
+              @click={`selected = { issue: ${mag.issue}, year: ${mag.year} }; prompt = true`}
+            >
+              <span class="block aspect-[3/4] overflow-hidden">
+                <img
+                  src={mag.img}
+                  alt={`Eurowoman nr. ${mag.issue}`}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+              </span>
+              <span class="block mt-3">
+                <span class="block text-[9px] tracking-widest uppercase text-gray-400">{mag.year} — Nr. {mag.issue}</span>
+              </span>
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Abonnements-prompt -->
+    <div
+      x-show="prompt"
+      x-transition:enter="transition ease-out duration-200"
+      x-transition:enter-start="opacity-0"
+      x-transition:enter-end="opacity-100"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
+      @click.self="prompt = false"
+      @keydown.escape.window="prompt = false"
+      style="display:none;"
+    >
+      <div
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="opacity-0 scale-95"
+        x-transition:enter-end="opacity-100 scale-100"
+        class="bg-white w-full max-w-sm px-12 py-14 flex flex-col items-center text-center"
+      >
+        <p class="text-[9px] tracking-[0.4em] uppercase text-gray-400 mb-8" x-text="selected ? selected.year + ' — Nr. ' + selected.issue : ''"></p>
+        <div class="h-px w-10 bg-gray-200 mb-8"></div>
+        <h2 class="text-xl font-light leading-snug mb-4 tracking-[var(--tracking-editorial)]">
+          Dette magasin kræver et abonnement
+        </h2>
+        <p class="text-xs text-gray-400 leading-relaxed mb-10">
+          Få adgang til hele arkivet — alle udgaver siden 1998 — med et Eurowoman-abonnement.
+        </p>
+        <a
+          href="/abonner"
+          class="w-full border border-black text-[10px] tracking-widest uppercase py-4 hover:bg-black hover:text-white transition-colors duration-300 mb-4 block"
+        >
+          Se abonnementer
+        </a>
+        <button
+          type="button"
+          @click="prompt = false"
+          class="text-[9px] tracking-[0.3em] uppercase text-gray-400 hover:text-black transition-colors duration-200"
+        >
+          Luk
+        </button>
+      </div>
+    </div>
+
+  </div>
+</MainLayout>
