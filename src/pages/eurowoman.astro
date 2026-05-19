@@ -1,0 +1,168 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+const redaktionen = [
+  { titel: "Chefredaktør",              navn: "Anne Lose",                    email: "anne.lose@eurowoman.dk" },
+  { titel: "Redaktionschef",            navn: "Mette Størum Krogh",           email: "mette@eurowoman.dk" },
+  { titel: "Art Director",              navn: "Rikke Gråbæk",                 email: "rikke@eurowoman.dk" },
+  { titel: "Some- & Skønhedsredaktør",  navn: "Cathrine Leth Damgaard",       email: "cathrine@eurowoman.dk" },
+  { titel: "Moderedaktør",              navn: "Anna Katinka von der Fehr",    email: "annakatinka@eurowoman.dk" },
+  { titel: "Modekoordinator",           navn: "Rose Victoria Harhoff Pieters", email: "rose@eurowoman.dk" },
+  { titel: "Digital Redaktør",          navn: "Julie Bruun Lund",             email: "julie@alt.dk" },
+];
+---
+
+<MainLayout title="Eurowoman">
+
+  <!-- Hero -->
+  <section class="border-b border-gray-100 px-12 py-24 max-w-4xl mx-auto text-center">
+    <img src="/logo.png" alt="Eurowoman" class="h-7 w-auto object-contain mx-auto mb-12" />
+    <h1 class="text-4xl font-bold leading-tight mb-8 max-w-2xl mx-auto">
+      Danmarks førende stemme inden for mode, kultur og det levede liv
+    </h1>
+    <p class="text-sm text-gray-600 leading-relaxed max-w-xl mx-auto">
+      Siden 1998 har Eurowoman sat dagsordenen for, hvad dansk mode- og kulturjournalistik kan være.
+    </p>
+  </section>
+
+  <!-- Om magasinet -->
+  <section class="grid grid-cols-1 md:grid-cols-2">
+    <div class="overflow-hidden" style="min-height: 300px;">
+      <img src="/mennesker/annelose.jpg" alt="Anne Lose, Chefredaktør" class="w-full h-full object-cover object-top" />
+    </div>
+    <div class="flex flex-col justify-center px-6 md:px-20 py-10 md:py-16 border-t md:border-t-0 md:border-l border-gray-100">
+      <div class="w-px h-10 bg-gray-200 mb-10"></div>
+      <p class="text-xl font-serif leading-relaxed text-gray-900 mb-10 tracking-[var(--tracking-editorial)]">
+        "Eurowoman har altid været meget mere end et modemagasin. Vi vil rigtig gerne inspirere og udfordre og tage de samtaler ind i magasinet."
+      </p>
+      <div class="h-px w-8 bg-gray-200 mb-6"></div>
+      <p class="text-[10px] tracking-widest uppercase text-gray-400">Anne Lose</p>
+      <p class="text-[10px] tracking-widest uppercase text-gray-300 mt-1">Chefredaktør, Eurowoman</p>
+    </div>
+  </section>
+
+  <!-- Om os -->
+  <section class="border-b border-gray-100 px-6 md:px-12 py-12 md:py-20">
+    <div class="max-w-4xl mx-auto">
+      <p class="text-[10px] tracking-widest uppercase text-gray-400 mb-14">Om os</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 items-start">
+        <h2 class="text-2xl font-bold leading-snug">
+          Et magasin for kvinder, der er nysgerrige på verden
+        </h2>
+        <div class="space-y-5">
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Eurowoman udkommer 12 gange om året og er et af Skandinaviens mest læste mode- og kulturmagasiner. Vi dækker mode, skønhed, kunst, kultur, rejser og livsstil – med et blik, der er kræsent uden at være koldt.
+          </p>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Vores udgangspunkt er altid mennesket. Kvinder, der skaber, tager valg, tvivler og fortsætter. Det er de historier, vi er her for at fortælle.
+          </p>
+          <p class="text-[10px] tracking-widest uppercase text-gray-400 pt-2">
+            Eurowoman udgives af Story House Egmont og er en del af en af Nordeuropas største medievirksomheder.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tal -->
+  <section class="border-t border-b border-gray-100 px-6 md:px-12 py-12 md:py-16">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto text-center">
+      <div>
+        <p class="text-4xl font-light mb-2">1998</p>
+        <p class="text-[10px] tracking-widest uppercase text-gray-400">Grundlagt</p>
+      </div>
+      <div>
+        <p class="text-4xl font-light mb-2">12</p>
+        <p class="text-[10px] tracking-widest uppercase text-gray-400">Udgaver om året</p>
+      </div>
+      <div>
+        <p class="text-4xl font-light mb-2">40.000+</p>
+        <p class="text-[10px] tracking-widest uppercase text-gray-400">Abonnenter</p>
+      </div>
+      <div>
+        <p class="text-4xl font-light mb-2">250.000+</p>
+        <p class="text-[10px] tracking-widest uppercase text-gray-400">Månedlige læsere</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Redaktionen -->
+  <section class="px-6 md:px-12 py-12 md:py-20 max-w-4xl mx-auto w-full">
+    <p class="text-[10px] tracking-widest uppercase text-gray-400 mb-14">Redaktionen</p>
+
+    <div class="divide-y divide-gray-100">
+      {redaktionen.map((person) => (
+        <div class="grid grid-cols-1 md:grid-cols-3 items-start md:items-center py-4 md:py-6 gap-1 md:gap-4">
+          <p class="text-[10px] tracking-widest uppercase text-gray-400">{person.titel}</p>
+          <p class="text-sm font-medium">{person.navn}</p>
+          <a
+            href={`mailto:${person.email}`}
+            class="text-xs text-gray-400 hover:text-black transition-colors duration-200 justify-self-end"
+           
+          >
+            {person.email}
+          </a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Kundeservice -->
+  <section class="border-t border-gray-100 px-6 md:px-12 py-12 md:py-20 bg-gray-50">
+    <div class="max-w-4xl mx-auto">
+      <p class="text-[10px] tracking-widest uppercase text-gray-400 mb-14">Kundeservice</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
+
+        <!-- Abonnement -->
+        <div>
+          <p class="text-xs font-semibold tracking-widest uppercase mb-4">Abonnementsafdelingen</p>
+          <p class="text-xs text-gray-600 leading-relaxed mb-4">
+            Meddelelser vedr. flytning, opsigelse og øvrige henvendelser om dit abonnement.
+          </p>
+          <div class="space-y-2">
+            <p class="text-xs text-gray-600">
+              Tlf.: <a href="tel:70203100" class="hover:text-black transition-colors">70 20 31 00</a>
+            </p>
+            <p class="text-xs text-gray-600">
+              E-mail: <a href="mailto:kontakt@mitblad.dk" class="hover:text-black transition-colors">kontakt@mitblad.dk</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Annoncering -->
+        <div>
+          <p class="text-xs font-semibold tracking-widest uppercase mb-4">Annonceafdelingen</p>
+          <p class="text-xs text-gray-600 leading-relaxed mb-4">
+            Spørgsmål om annoncering, samarbejder og mediekit.
+          </p>
+          <div class="space-y-2">
+            <p class="text-xs text-gray-600">
+              E-mail: <a href="mailto:annoncesalg@egmontmagasiner.dk" class="hover:text-black transition-colors">annoncesalg@egmontmagasiner.dk</a>
+            </p>
+            <p class="text-xs text-gray-600">
+              <a href="https://storyhouseegmont.dk/media-kit" target="_blank" rel="noopener" class="hover:text-black transition-colors">storyhouseegmont.dk/media-kit ↗</a>
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Udgiver -->
+      <div class="border-t border-gray-200 mt-14 pt-10">
+        <p class="text-[10px] tracking-widest uppercase text-gray-400 mb-3">Udgiver</p>
+        <p class="text-xs text-gray-600">Story House Egmont A/S · Vognmagergade 11 · 1148 København K</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="border-t border-gray-100 py-16 md:py-20 text-center px-6 md:px-12">
+    <p class="text-[10px] tracking-widest uppercase text-gray-400 mb-6">Bliv en del af Eurowoman</p>
+    <h2 class="text-2xl font-bold mb-8">Få magasinet leveret direkte til din dør</h2>
+    <a href="/abonner" class="inline-block border border-black text-[10px] tracking-widest uppercase px-10 py-4 hover:bg-black hover:text-white transition-colors duration-300">
+      Se abonnementer
+    </a>
+  </section>
+
+</MainLayout>
