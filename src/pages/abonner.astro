@@ -1,0 +1,178 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout title="Abonner">
+
+  <!-- Header -->
+  <section class="border-b border-gray-100 text-center px-6 md:px-12 py-16 md:py-24 flex flex-col items-center justify-center" style="min-height: 400px;">
+    <p class="text-[10px] tracking-widest uppercase text-gray-400 mb-12">Bliv abonnent</p>
+    <h1 class="text-3xl md:text-4xl font-bold leading-tight max-w-2xl mx-auto mb-8">
+      Danmarks førende mode- og kulturmagasin — leveret til din dør
+    </h1>
+    <p class="text-sm text-gray-600 max-w-lg mx-auto leading-relaxed">
+      Få Eurowoman direkte i din postkasse eller på din skærm. Med et abonnement er du altid på forkant med mode, kultur og de historier, der betyder noget.
+    </p>
+  </section>
+
+  <!-- Abonnementsplaner -->
+  <section class="px-4 md:px-12 py-12 md:py-20" x-data>
+    <p class="text-center text-[10px] tracking-widest uppercase text-gray-400 mb-14">Vælg dit abonnement</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
+
+      <!-- 3 måneder -->
+      <div class="border border-gray-200 p-6 md:p-10 flex flex-col">
+        <p class="text-[10px] tracking-widest uppercase text-gray-400 mb-6">3 måneder</p>
+        <div class="mb-6">
+          <p class="text-5xl font-light leading-none mb-1">149 <span class="text-base font-normal text-gray-400">kr.</span></p>
+          <p class="text-xs text-gray-400 mt-1">derefter 59 kr./md. · opsig når som helst</p>
+        </div>
+        <ul class="text-xs text-gray-600 space-y-3 leading-relaxed mb-10 flex-1">
+          <li class="flex items-start gap-2"><span class="mt-px">—</span><span>3 trykte udgaver leveret til døren</span></li>
+          <li class="flex items-start gap-2"><span class="mt-px">—</span><span>Fuld digital adgang i perioden</span></li>
+          <li class="flex items-start gap-2"><span class="mt-px">—</span><span>Adgang til komplet magasinarkiv</span></li>
+          <li class="flex items-start gap-2"><span class="mt-px">—</span><span>Nyhedsbrev til abonnenter</span></li>
+        </ul>
+        <button
+          type="button"
+          @click="$store.cart.add({ issue: '3mdr', title: '3 måneders abonnement', price: 149, img: '/forside.png' })"
+          class="w-full border border-black text-[10px] tracking-widest uppercase py-4 hover:bg-black hover:text-white transition-colors duration-300"
+         
+        >
+          Kom i gang
+        </button>
+      </div>
+
+      <!-- Digitalt -->
+      <div class="border border-gray-200 p-6 md:p-10 flex flex-col">
+        <p class="text-[10px] tracking-widest uppercase text-gray-400 mb-6">Digitalt</p>
+        <div class="mb-6">
+          <p class="text-5xl font-light leading-none mb-1">249 <span class="text-base font-normal text-gray-400">kr.</span></p>
+          <p class="text-xs text-gray-400 mt-1">pr. år · 7 dages gratis prøveperiode</p>
+        </div>
+        <ul class="text-xs text-gray-600 space-y-3 leading-relaxed mb-10 flex-1">
+          <li class="flex items-start gap-2"><span class="mt-px">—</span><span>Ubegrænset digital adgang</span></li>
+          <li class="flex items-start gap-2"><span class="mt-px">—</span><span>Alle artikler – også eksklusivt indhold</span></li>
+          <li class="flex items-start gap-2"><span class="mt-px">—</span><span>Adgang til komplet magasinarkiv</span></li>
+          <li class="flex items-start gap-2"><span class="mt-px">—</span><span>Nyhedsbrev og abonnent-invitationer</span></li>
+        </ul>
+        <button
+          type="button"
+          @click="$store.cart.add({ issue: 'digital', title: 'Digitalt abonnement', price: 249, img: '/forside.png' })"
+          class="w-full border border-black text-[10px] tracking-widest uppercase py-4 hover:bg-black hover:text-white transition-colors duration-300"
+         
+        >
+          Prøv gratis i 7 dage
+        </button>
+      </div>
+
+      <!-- Print + Digitalt (fremhævet) -->
+      <div class="bg-black text-white p-6 md:p-10 flex flex-col relative">
+        <div class="absolute top-0 right-0 bg-white text-black text-[9px] tracking-widest uppercase px-3 py-1">Mest populær</div>
+        <p class="text-[10px] tracking-widest uppercase text-white/50 mb-6">Print + Digitalt</p>
+        <div class="mb-6">
+          <p class="text-5xl font-light leading-none mb-1">499 <span class="text-base font-normal text-white/40">kr.</span></p>
+          <p class="text-xs text-white/40 mt-1">pr. år · spar 30% i forhold til løssalg</p>
+        </div>
+        <ul class="text-xs text-white/60 space-y-3 leading-relaxed mb-10 flex-1">
+          <li class="flex items-start gap-2"><span class="mt-px">—</span><span>12 trykte udgaver om året til din dør</span></li>
+          <li class="flex items-start gap-2"><span class="mt-px">—</span><span>Fuld digital adgang inkluderet</span></li>
+          <li class="flex items-start gap-2"><span class="mt-px">—</span><span>Adgang til komplet magasinarkiv</span></li>
+          <li class="flex items-start gap-2"><span class="mt-px">—</span><span>Eksklusivt abonnent-indhold og events</span></li>
+          <li class="flex items-start gap-2"><span class="mt-px">—</span><span>Gratis fragt på alle køb i shoppen</span></li>
+        </ul>
+        <button
+          type="button"
+          @click="$store.cart.add({ issue: 'annual', title: 'Print + Digitalt abonnement', price: 499, img: '/forside.png' })"
+          class="w-full border border-white text-[10px] tracking-widest uppercase py-4 hover:bg-white hover:text-black transition-colors duration-300"
+         
+        >
+          Vælg Print + Digitalt
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Garanti -->
+    <p class="text-center text-xs text-gray-400 mt-10">
+      Ingen binding · Opsig til enhver tid · Pengene tilbage-garanti i 14 dage
+    </p>
+  </section>
+
+  <!-- Fordele -->
+  <section class="border-t border-gray-100 px-6 md:px-12 py-12 md:py-20">
+    <p class="text-center text-[10px] tracking-widest uppercase text-gray-400 mb-14">Derfor vælger over 40.000 Eurowoman</p>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 max-w-5xl mx-auto">
+      <div class="flex flex-col gap-3">
+        <p class="text-xs font-semibold tracking-widest uppercase">Kureret indhold</p>
+        <p class="text-xs text-gray-600 leading-relaxed">Redaktionen sorterer, analyserer og præsenterer – så du altid ved, hvad der er værd at vide inden for mode, kultur og livsstil.</p>
+      </div>
+      <div class="flex flex-col gap-3">
+        <p class="text-xs font-semibold tracking-widest uppercase">Direkte til døren</p>
+        <p class="text-xs text-gray-600 leading-relaxed">12 gange om året lander Eurowoman i din postkasse – frisk, lækkert og klar til at blive læst fra første til sidste side.</p>
+      </div>
+      <div class="flex flex-col gap-3">
+        <p class="text-xs font-semibold tracking-widest uppercase">Eksklusivt adgang</p>
+        <p class="text-xs text-gray-600 leading-relaxed">Som abonnent får du adgang til artikler, interviews og arkivindhold, der ikke er tilgængeligt for alle andre.</p>
+      </div>
+      <div class="flex flex-col gap-3">
+        <p class="text-xs font-semibold tracking-widest uppercase">Events &amp; fællesskab</p>
+        <p class="text-xs text-gray-600 leading-relaxed">Bliv inviteret til Eurowomans arrangementer, præsentationer og bag-kulissen-oplevelser forbeholdt vores abonnenter.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Magasin preview -->
+  <!-- FAQ -->
+  <section class="border-t border-gray-100 px-6 md:px-12 py-12 md:py-20 max-w-3xl mx-auto w-full" x-data="{ open: null }">
+    <p class="text-center text-[10px] tracking-widest uppercase text-gray-400 mb-14">Spørgsmål &amp; svar</p>
+
+    {[
+      {
+        q: "Hvornår modtager jeg mit første magasin?",
+        a: "Dit første magasin sendes med næste udgivelse. Du modtager typisk det inden for 5–7 hverdage efter bestillingen. Du får digital adgang med det samme."
+      },
+      {
+        q: "Kan jeg opsige mit abonnement når som helst?",
+        a: "Ja. Du kan opsige dit abonnement til enhver tid uden varsel. Opsigelsen træder i kraft ved udløbet af den betalte periode, og du beholder din adgang frem til da."
+      },
+      {
+        q: "Hvad er inkluderet i den digitale adgang?",
+        a: "Med digital adgang kan du læse alle artikler på tværs af kategorier, inkl. eksklusive interviews, arkivindhold og abonnent-nyhedsbreve. Alt tilgængeligt på alle enheder."
+      },
+      {
+        q: "Kan jeg give et abonnement i gave?",
+        a: "Ja – kontakt os på abonnement@eurowoman.dk, så hjælper vi dig med at sætte et gaveabonnement op med et personligt gavekort."
+      },
+      {
+        q: "Hvad sker der efter prøveperioden på 7 dage?",
+        a: "Hvis du ikke opsiger inden prøveperiodens udløb, overgår dit abonnement automatisk til det valgte årsabonnement, og du faktureres det fulde beløb."
+      },
+    ].map((item, i) => (
+      <div class="border-b border-gray-100">
+        <button
+          type="button"
+          class="w-full flex items-center justify-between py-5 text-left"
+          @click={`open === ${i} ? open = null : open = ${i}`}
+        >
+          <span class="text-sm font-medium">{item.q}</span>
+          <span class="text-xl font-light text-gray-400 ml-4 flex-shrink-0" x-text={`open === ${i} ? '−' : '+'`}></span>
+        </button>
+        <div x-show={`open === ${i}`} x-transition class="pb-5">
+          <p class="text-sm text-gray-600 leading-relaxed">{item.a}</p>
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <!-- Allerede abonnent -->
+  <section class="border-t border-gray-100 py-14 text-center">
+    <p class="text-sm text-gray-400 mb-5">Allerede abonnent?</p>
+    <a href="/login" class="text-[10px] tracking-widest uppercase border border-black px-10 py-4 hover:bg-black hover:text-white transition-colors duration-300">
+      Log ind på din konto
+    </a>
+  </section>
+
+</MainLayout>
