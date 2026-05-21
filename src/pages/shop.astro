@@ -1,0 +1,39 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import MagazineGrid from "../components/MagazineGrid.astro";
+---
+<MainLayout title="Shop">
+
+  <section class="border-b border-gray-100 px-12 py-14 text-center">
+    <p class="text-[10px] tracking-widest uppercase text-gray-400">Redaktionens udvalg</p>
+  </section>
+
+  <MagazineGrid />
+
+  <!-- Stemningsgalleri -->
+  <section class="grid grid-cols-2 md:grid-cols-4" style="grid-auto-rows: 200px;">
+
+    <!-- Række 1: portrait · portrait · landscape(2) -->
+    <div class="overflow-hidden">
+      <img src="/shop/campaign/campaign-honey.jpg" class="w-full h-full object-cover object-center" alt="" />
+    </div>
+    <div class="overflow-hidden">
+      <img src="/shop/campaign/campaign-activist-lip.jpg" class="w-full h-full object-cover object-top" alt="" />
+    </div>
+    <div class="md:col-span-2 overflow-hidden">
+      <img src="/shop/campaign/campaign-blue-lagoon-mask.jpg" class="w-full h-full object-cover object-center" alt="" />
+    </div>
+
+    <!-- Række 2: portrait · landscape(2) · portrait -->
+    <div class="overflow-hidden">
+      <img src="/shop/campaign/campaign-activist-balm.jpg" class="w-full h-full object-cover object-center" alt="" />
+    </div>
+    <div class="md:col-span-2 overflow-hidden">
+      <img src="/shop/campaign/campaign-aesop-refiner.jpg" class="w-full h-full object-cover object-center" alt="" />
+    </div>
+    <div class="overflow-hidden">
+      <img src="/shop/campaign/campaign-aesop-concentrate.jpg" class="w-full h-full object-cover object-center" alt="" />
+    </div>
+
+  </section>
+</MainLayout>
