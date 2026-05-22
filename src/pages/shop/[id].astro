@@ -1,0 +1,116 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { shopProducts } from "../../data/shopProducts";
+
+export function getStaticPaths() {
+  return shopProducts.map((p) => ({ params: { id: String(p.id) } }));
+}
+
+const { id } = Astro.params;
+const product = shopProducts.find((p) => p.id === Number(id))!;
+
+const related = shopProducts.filter((p) => p.id !== product.id).slice(0, 3);
+---
+
+<MainLayout title={product.shopTitle}>
+  <div class="px-6 md:px-12 py-10 md:py-16">
+
+    <!-- Brødkrumme -->
+    <nav class="mb-10 text-[10px] tracking-widest uppercase text-gray-400 flex gap-2 items-center">
+      <a href="/shop" class="hover:text-black transition-colors">Shop</a>
+      <span>/</span>
+      <span class="text-black">{product.shopTitle}</span>
+    </nav>
+
+    <!-- Produkt layout -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 items-start">
+
+      <!-- Billede -->
+      <div class="overflow-hidden bg-gray-100 aspect-square">
+        <img
+          src={product.img}
+          alt={product.shopTitle}
+          class="w-full h-full object-contain p-8"
+        />
+      </div>
+
+      <!-- Info -->
+      <div class="flex flex-col pt-4">
+
+        <!-- Labels -->
+        <div class="flex items-center gap-2 mb-4">
+          {product.isNy && (
+            <span class="text-[10px] tracking-widest uppercase font-semibold border border-black px-1 py-px">Ny</span>
+          )}
+          <span class="text-[10px] tracking-widest uppercase text-gray-400">Produkt</span>
+        </div>
+
+        <!-- Titel -->
+        <h1 class="text-2xl font-bold leading-tight mb-4">{product.shopTitle}</h1>
+
+        <!-- Pris -->
+        <p class="text-lg text-gray-600 mb-8">{product.price} kr.</p>
+
+        <!-- Beskrivelse -->
+        <p class="text-sm text-gray-600 leading-relaxed mb-10">{product.description}</p>
+
+        <!-- Læg i kurv -->
+        <button
+          type="button"
+          x-data
+          @click={`$store.cart.add({ issue: ${product.id}, title: '${product.shopTitle}', price: ${product.price}, img: '${product.img}' })`}
+          class="w-full border border-black text-xs tracking-widest uppercase py-4 hover:bg-black hover:text-white transition-colors duration-300"
+         
+        >
+          Læg i kurv
+        </button>
+
+        <!-- Gå til kurv -->
+        <a
+          href="/kurv"
+          class="mt-3 w-full text-center text-xs tracking-widest uppercase py-4 text-gray-400 hover:text-black transition-colors duration-300"
+         
+        >
+          Se kurv
+        </a>
+
+        <!-- Levering info -->
+        <div class="mt-10 border-t border-gray-100 pt-6 space-y-2">
+          <p class="text-[10px] tracking-widest uppercase text-gray-400">Levering 2–5 hverdage · Fragt 49 kr.</p>
+          <p class="text-[10px] tracking-widest uppercase text-gray-400">Gratis returnering inden 14 dage</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Relaterede produkter -->
+    <div class="mt-24 border-t border-gray-100 pt-16">
+      <p class="text-center text-xs tracking-widest uppercase text-gray-400 mb-12">Du vil måske også synes om</p>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-x-4 md:gap-x-8 gap-y-10 md:gap-y-16">
+        {related.map((item) => (
+          <a href={`/shop/${item.id}`} class="group flex flex-col">
+            <div class="overflow-hidden bg-gray-100 aspect-square">
+              <img
+                src={item.img}
+                alt={item.shopTitle}
+                class="w-full h-full object-contain p-8 group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div class="mt-4">
+              <div class="flex items-center gap-2 mb-2">
+                {item.isNy && (
+                  <span class="text-[10px] tracking-widest uppercase font-semibold border border-black px-1 py-px">Ny</span>
+                )}
+                <span class="text-[10px] tracking-widest uppercase text-gray-400">Produkt</span>
+              </div>
+              <p class="text-xs tracking-widest uppercase font-medium leading-snug">{item.shopTitle}</p>
+              <p class="text-xs text-gray-600 mt-2">{item.price} kr.</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</MainLayout>
