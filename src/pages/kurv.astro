@@ -1,0 +1,106 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import MagazineGrid from "../components/MagazineGrid.astro";
+---
+<MainLayout title="Kurv">
+  <div x-data class="px-4 md:px-12 py-10 md:py-16">
+
+    <!-- Titel -->
+    <p class="text-center text-xs tracking-widest uppercase text-gray-400 mb-12">Kurv</p>
+
+    <!-- Tom kurv -->
+    <div x-show="$store.cart.items.length === 0" class="text-center py-24">
+      <p class="text-sm text-gray-400 tracking-wide mb-6">Din kurv er tom</p>
+      <a href="/shop" class="text-xs tracking-widest uppercase border border-black px-8 py-3 hover:bg-black hover:text-white transition-colors duration-300">Se shop</a>
+    </div>
+
+    <!-- Kurv indhold -->
+    <div x-show="$store.cart.items.length > 0" class="grid grid-cols-1 md:grid-cols-[1fr_320px] gap-8 md:gap-16 items-start">
+
+      <!-- Venstre: produkter -->
+      <div>
+        <a href="/magasin-arkiv" class="text-xs tracking-widest uppercase text-gray-400 hover:text-black transition-colors mb-8 inline-block">← Tilbage til shop</a>
+
+        <!-- Kolonneoverskrifter -->
+        <div class="hidden md:grid grid-cols-[auto_1fr_100px_100px_100px_32px] gap-4 items-center border-b border-gray-200 pb-3 mb-4">
+          <div></div>
+          <span class="text-xs tracking-widest uppercase text-gray-400">Produkt</span>
+          <span class="text-xs tracking-widest uppercase text-gray-400 text-right">Pris</span>
+          <span class="text-xs tracking-widest uppercase text-gray-400 text-center">Antal</span>
+          <span class="text-xs tracking-widest uppercase text-gray-400 text-right">Total</span>
+          <div></div>
+        </div>
+
+        <!-- Produkter -->
+        <template x-for="item in $store.cart.items" :key="item.issue">
+          <div class="grid grid-cols-[auto_1fr] md:grid-cols-[auto_1fr_100px_100px_100px_32px] gap-4 items-start border-b border-gray-100 py-4">
+            <img :src="item.img" :alt="'Eurowoman nr. ' + item.issue" class="w-14 h-20 object-cover" />
+            <div>
+              <p class="text-xs font-medium">Eurowoman</p>
+              <p class="text-xs text-gray-600" x-text="'Udgave ' + item.issue"></p>
+              <p class="text-xs text-gray-400" x-text="item.title"></p>
+              <!-- Mobile: qty + total + remove -->
+              <div class="flex items-center gap-3 mt-3 md:hidden">
+                <select
+                  :value="item.qty"
+                  @change="$store.cart.updateQty(item.issue, $event.target.value)"
+                  class="border border-gray-200 text-xs px-2 py-1 w-14 text-center"
+                >
+                  <template x-for="n in [1,2,3,4,5,6,7,8,9,10]" :key="n">
+                    <option :value="n" :selected="n === item.qty" x-text="n"></option>
+                  </template>
+                </select>
+                <p class="text-xs" x-text="(item.price * item.qty) + ' kr.'"></p>
+                <button type="button" @click="$store.cart.remove(item.issue)" class="text-gray-300 hover:text-black transition-colors text-lg">×</button>
+              </div>
+            </div>
+            <p class="hidden md:block text-xs text-right" x-text="item.price + ' kr.'"></p>
+            <div class="hidden md:flex justify-center">
+              <select
+                :value="item.qty"
+                @change="$store.cart.updateQty(item.issue, $event.target.value)"
+                class="border border-gray-200 text-xs px-2 py-1 w-16 text-center"
+              >
+                <template x-for="n in [1,2,3,4,5,6,7,8,9,10]" :key="n">
+                  <option :value="n" :selected="n === item.qty" x-text="n"></option>
+                </template>
+              </select>
+            </div>
+            <p class="hidden md:block text-xs text-right" x-text="(item.price * item.qty) + ' kr.'"></p>
+            <button @click="$store.cart.remove(item.issue)" class="hidden md:block text-gray-300 hover:text-black transition-colors text-lg">×</button>
+          </div>
+        </template>
+      </div>
+
+      <!-- Højre: kurv total -->
+      <div class="border border-gray-200 p-8 sticky top-8">
+        <h2 class="text-2xl font-bold mb-4">Kurv total</h2>
+        <div class="border-t border-gray-200 pt-4 space-y-3">
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-600">Subtotal</span>
+            <span x-text="$store.cart.subtotal + ' kr.'"></span>
+          </div>
+          <div class="flex justify-between text-sm border-t border-gray-100 pt-3">
+            <span class="text-gray-600">Fragt</span>
+            <span x-text="$store.cart.shipping + ' kr.'"></span>
+          </div>
+          <div class="flex justify-between text-sm font-semibold border-t border-gray-200 pt-3">
+            <span>Total</span>
+            <span x-text="$store.cart.total + ' kr.'"></span>
+          </div>
+        </div>
+        <a href="#" class="mt-6 block w-full bg-black text-white text-xs tracking-widest uppercase text-center py-4 hover:opacity-70 transition-opacity">
+          Gå til kassen
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Måske interesseret i -->
+  <div x-data x-show="$store.cart.items.length > 0" class="border-t border-gray-100 mt-8">
+    <p class="text-center text-xs tracking-widest uppercase text-gray-400 mt-12">Du vil måske også synes om...</p>
+    <MagazineGrid />
+  </div>
+
+</MainLayout>
