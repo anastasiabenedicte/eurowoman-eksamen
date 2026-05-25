@@ -1,0 +1,66 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+---
+<MainLayout title="Log ind / Registrer">
+  <div class="min-h-[80vh] flex items-center justify-center px-6 py-16">
+    <div class="w-full max-w-sm" x-data="{ tab: 'login' }">
+
+      <!-- Logo / titel -->
+      <div class="text-center mb-10">
+        <img src="/logo.png" alt="Eurowoman" class="h-6 w-auto object-contain mx-auto mb-6" />
+        <div class="flex border-b border-gray-200">
+          <button
+            type="button"
+            @click="tab = 'login'"
+            :class="tab === 'login' ? 'border-b-2 border-black text-black' : 'text-gray-400'"
+            class="flex-1 text-xs tracking-widest uppercase pb-3 transition-colors duration-200"
+           
+          >Log ind</button>
+          <button
+            type="button"
+            @click="tab = 'register'"
+            :class="tab === 'register' ? 'border-b-2 border-black text-black' : 'text-gray-400'"
+            class="flex-1 text-xs tracking-widest uppercase pb-3 transition-colors duration-200"
+           
+          >Registrer</button>
+        </div>
+      </div>
+
+      <!-- Log ind -->
+      <form x-show="tab === 'login'" class="flex flex-col gap-5">
+        <div>
+          <label class="block text-xs tracking-widest uppercase text-gray-400 mb-2">E-mail</label>
+          <input type="email" class="w-full border-0 border-b border-gray-200 focus:border-black focus:ring-0 outline-none py-2 text-sm bg-transparent" />
+        </div>
+        <div>
+          <label class="block text-xs tracking-widest uppercase text-gray-400 mb-2">Adgangskode</label>
+          <input type="password" autocomplete="current-password" class="w-full border-0 border-b border-gray-200 focus:border-black focus:ring-0 outline-none py-2 text-sm bg-transparent" />
+        </div>
+        <a href="#" class="text-xs text-gray-400 hover:text-black transition-colors self-end">Glemt adgangskode?</a>
+        <button type="submit" class="w-full bg-black text-white text-xs tracking-widest uppercase py-4 hover:opacity-70 transition-opacity mt-2">
+          Log ind
+        </button>
+      </form>
+
+      <!-- Registrer -->
+      <form x-show="tab === 'register'" class="flex flex-col gap-5">
+        <div>
+          <label class="block text-xs tracking-widest uppercase text-gray-400 mb-2">Navn</label>
+          <input type="text" class="w-full border-0 border-b border-gray-200 focus:border-black focus:ring-0 outline-none py-2 text-sm bg-transparent" />
+        </div>
+        <div>
+          <label class="block text-xs tracking-widest uppercase text-gray-400 mb-2">E-mail</label>
+          <input type="email" class="w-full border-0 border-b border-gray-200 focus:border-black focus:ring-0 outline-none py-2 text-sm bg-transparent" />
+        </div>
+        <div>
+          <label class="block text-xs tracking-widest uppercase text-gray-400 mb-2">Adgangskode</label>
+          <input type="password" autocomplete="new-password" class="w-full border-0 border-b border-gray-200 focus:border-black focus:ring-0 outline-none py-2 text-sm bg-transparent" />
+        </div>
+        <button type="submit" class="w-full bg-black text-white text-xs tracking-widest uppercase py-4 hover:opacity-70 transition-opacity mt-2">
+          Opret konto
+        </button>
+      </form>
+
+    </div>
+  </div>
+</MainLayout>
