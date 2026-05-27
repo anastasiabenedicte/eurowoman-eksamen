@@ -13,13 +13,55 @@ const shopItems = [66, 56, 51, 50].map(id => shopProducts.find(p => p.id === id)
 
   <Hero />
 
-  <!-- ── Intro ── -->
+  <!-- ══════════════════════════════
+       MAGASIN ARKIV
+  ══════════════════════════════ -->
   <section class="border-b border-gray-100">
-    <div class="px-6 py-16 md:px-20 md:py-32">
-      <p class="text-[10px] tracking-widest uppercase text-gray-400 mb-10">Eurowoman · Magasinet</p>
-      <p class="text-xl text-gray-600 max-w-2xl leading-loose">
-        Danmarks mode- og kulturmagasin siden 1998 — et indvendigt blik på de historier der fortæller hvem vi er, hvad vi bærer, og hvad der bevæger os.
+
+    <div class="px-6 md:px-20 pt-12 md:pt-24 pb-8 md:pb-16 flex items-center justify-between">
+      <p class="text-[10px] tracking-widest uppercase text-gray-400">Magasin Arkiv</p>
+      <a href="/magasin-arkiv" class="text-[10px] tracking-widest uppercase text-gray-400 hover:text-black transition-colors">Se alle udgaver →</a>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4">
+      {[
+        { n: 341, img: "/forsider/EUW 2026 341 ForsideFinal.jpg",   current: true },
+        { n: 310, img: "/forsider/EUW 2023 310 Forside_suit.jpg",   current: false },
+        { n: 311, img: "/forsider/EUW 2023 311 Forside_spot.jpg",   current: false },
+        { n: 324, img: "/forsider/24_dk_euw_324_001_Tshirt.jpg",    current: false },
+      ].map((m, i) => (
+        <a href="/magasin-arkiv" class={`group flex flex-col p-4 md:p-10 border-t border-gray-100 ${i % 2 === 0 ? 'border-r md:border-r-0 border-gray-100' : ''} ${i < 3 ? 'md:border-r border-gray-100' : ''}`}>
+          <div class="relative overflow-hidden">
+            <img src={m.img} alt={`Eurowoman nr. ${m.n}`} class="w-full h-auto max-h-[260px] md:max-h-[540px] object-contain group-hover:scale-[1.02] transition-transform duration-500" />
+            <div class="absolute inset-0 bg-white/30 pointer-events-none z-10"></div>
+          </div>
+          <div class="mt-4">
+            <p class="text-[10px] tracking-widest uppercase text-gray-400">Nr. {m.n}</p>
+            {m.current && <p class="text-[10px] tracking-widest uppercase text-black mt-1">I salg nu</p>}
+          </div>
+        </a>
+      ))}
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════
+       REDAKTION
+  ══════════════════════════════ -->
+  <section class="grid grid-cols-1 md:grid-cols-2 border-b border-gray-100">
+    <div class="overflow-hidden" style="min-height:300px;">
+      <img src="/mennesker/annelose.jpg" alt="Anne Lose" class="w-full h-full object-cover object-top" />
+    </div>
+    <div class="flex flex-col justify-center px-6 md:px-28 py-10 md:py-32 border-t md:border-t-0 md:border-l border-gray-100">
+      <p class="text-[10px] tracking-widest uppercase text-gray-400 mb-8 md:mb-16">Redaktion</p>
+      <div class="w-px h-10 md:h-14 bg-gray-200 mb-8 md:mb-14"></div>
+      <p class="text-xl md:text-2xl font-serif leading-relaxed text-gray-900 mb-8 md:mb-14 tracking-[var(--tracking-editorial)]">
+        "Eurowoman har altid været meget mere end et modemagasin. Vi vil rigtig gerne inspirere og udfordre og tage de samtaler ind i magasinet."
       </p>
+      <div class="h-px w-8 bg-gray-200 mb-6 md:mb-8"></div>
+      <p class="text-[10px] tracking-widest uppercase text-gray-400 mb-1">Anne Lose</p>
+      <p class="text-[10px] tracking-widest uppercase text-gray-300">Chefredaktør, Eurowoman</p>
+      <a href="/eurowoman" class="mt-8 md:mt-16 text-[10px] tracking-widest uppercase text-gray-400 border-b border-gray-200 pb-px self-start hover:text-black hover:border-black transition-colors">Mød redaktionen →</a>
     </div>
   </section>
 
@@ -39,9 +81,9 @@ const shopItems = [66, 56, 51, 50].map(id => shopProducts.find(p => p.id === id)
           <img src={featured.img} alt={featured.title} class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" />
         </div>
         <div>
-          <p class="text-[10px] tracking-widest uppercase text-gray-400 mb-8">{featured.category}</p>
-          <h2 class="text-5xl font-bold leading-tight mb-10 group-hover:opacity-50 transition-opacity">{featured.title}</h2>
-          <p class="text-sm text-gray-600 leading-relaxed mb-14">{featured.teaser}</p>
+          <p class="text-[10px] tracking-widest uppercase text-gray-400 mb-5 md:mb-8">{featured.category}</p>
+          <h2 class="text-2xl md:text-5xl font-bold leading-tight mb-5 md:mb-10 group-hover:opacity-50 transition-opacity">{featured.title}</h2>
+          <p class="text-sm text-gray-600 leading-relaxed mb-8 md:mb-14">{featured.teaser}</p>
           <span class="text-[10px] tracking-widest uppercase text-gray-400 border-b border-gray-200 pb-px group-hover:border-black group-hover:text-black transition-colors">Læs artikel →</span>
         </div>
       </div>
@@ -49,63 +91,17 @@ const shopItems = [66, 56, 51, 50].map(id => shopProducts.find(p => p.id === id)
 
     <div class="grid grid-cols-1 md:grid-cols-2 border-t border-gray-100">
       {side.map((a, i) => (
-        <a href={`/artikler/${a.slug}`} class={`group block px-6 md:px-20 py-10 md:py-20 ${i === 0 ? 'border-b md:border-b-0 md:border-r border-gray-100' : ''}`}>
-          <div class="overflow-hidden mb-10" style="aspect-ratio:3/2;">
+        <a href={`/artikler/${a.slug}`} class={`group block px-6 md:px-20 py-8 md:py-20 ${i === 0 ? 'border-b md:border-b-0 md:border-r border-gray-100' : ''}`}>
+          <div class="overflow-hidden mb-6 md:mb-10" style="aspect-ratio:3/2;">
             <img src={a.img} alt={a.title} class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" />
           </div>
-          <p class="text-[10px] tracking-widest uppercase text-gray-400 mb-5">{a.category}</p>
-          <h3 class="text-2xl font-bold leading-snug mb-6 group-hover:opacity-50 transition-opacity">{a.title}</h3>
+          <p class="text-[10px] tracking-widest uppercase text-gray-400 mb-3 md:mb-5">{a.category}</p>
+          <h3 class="text-xl md:text-2xl font-bold leading-snug mb-4 md:mb-6 group-hover:opacity-50 transition-opacity">{a.title}</h3>
           <p class="text-sm text-gray-600 leading-relaxed">{a.teaser}</p>
         </a>
       ))}
     </div>
 
-  </section>
-
-  <!-- ══════════════════════════════
-       REDAKTION
-  ══════════════════════════════ -->
-  <section class="grid grid-cols-1 md:grid-cols-2 border-b border-gray-100">
-    <div class="overflow-hidden" style="min-height:300px;">
-      <img src="/mennesker/annelose.jpg" alt="Anne Lose" class="w-full h-full object-cover object-top" />
-    </div>
-    <div class="flex flex-col justify-center px-6 md:px-28 py-16 md:py-32 border-t md:border-t-0 md:border-l border-gray-100">
-      <p class="text-[10px] tracking-widest uppercase text-gray-400 mb-16">Redaktion</p>
-      <div class="w-px h-14 bg-gray-200 mb-14"></div>
-      <p class="text-2xl font-serif leading-relaxed text-gray-900 mb-14 tracking-[var(--tracking-editorial)]">
-        "Eurowoman har altid været meget mere end et modemagasin. Vi vil rigtig gerne inspirere og udfordre og tage de samtaler ind i magasinet."
-      </p>
-      <div class="h-px w-8 bg-gray-200 mb-8"></div>
-      <p class="text-[10px] tracking-widest uppercase text-gray-400 mb-1">Anne Lose</p>
-      <p class="text-[10px] tracking-widest uppercase text-gray-300">Chefredaktør, Eurowoman</p>
-      <a href="/eurowoman" class="mt-16 text-[10px] tracking-widest uppercase text-gray-400 border-b border-gray-200 pb-px self-start hover:text-black hover:border-black transition-colors">Mød redaktionen →</a>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════
-       GALLERI
-  ══════════════════════════════ -->
-  <section class="border-b border-gray-100">
-    <div class="px-6 md:px-20 pt-12 md:pt-24 pb-8 md:pb-16 flex items-center justify-between">
-      <p class="text-[10px] tracking-widest uppercase text-gray-400">Galleri</p>
-      <a href="/galleri" class="text-[10px] tracking-widest uppercase text-gray-400 hover:text-black transition-colors">Se galleri →</a>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-3">
-      {[
-        { src: "/kampagner/Acne x Willow_FW24 Campaign_No Logo_2x3_1.jpg", caption: "Acne Studios × Willow Smith, FW24" },
-        { src: "/kampagner/Acne x willow_FW24 Campaign_No Logo_2x3_7.jpg", caption: "Acne Studios × Willow Smith, FW24" },
-        { src: "/kampagner/Acne x willowFW24 Campaign_No Logo_2x3_8.jpg",  caption: "Acne Studios × Willow Smith, FW24" },
-      ].map((img) => (
-        <a href="/galleri" class="group flex flex-col p-4 md:p-10 border-t border-gray-100">
-          <img
-            src={img.src}
-            alt={img.caption}
-            class="w-full h-auto max-h-[560px] object-contain group-hover:scale-[1.02] transition-transform duration-500"
-          />
-          <p class="mt-4 text-[10px] tracking-widest uppercase text-gray-400">{img.caption}</p>
-        </a>
-      ))}
-    </div>
   </section>
 
   <!-- ══════════════════════════════
@@ -128,7 +124,7 @@ const shopItems = [66, 56, 51, 50].map(id => shopProducts.find(p => p.id === id)
             <img src={p.img} alt={p.shopTitle} class="w-full h-auto max-h-[380px] object-contain group-hover:scale-[1.02] transition-transform duration-500" />
           </a>
           <a href={`/shop/${p.id}`} class="text-[10px] tracking-widest uppercase text-gray-400 mb-2 hover:text-black transition-colors">{p.shopTitle}</a>
-          <p class="text-[10px] tracking-widest uppercase text-gray-400 mb-10">{p.price} kr.</p>
+          <p class="text-[10px] tracking-widest uppercase text-gray-400 mb-6 md:mb-10">{p.price} kr.</p>
           <button
             type="button"
             x-data
@@ -144,44 +140,41 @@ const shopItems = [66, 56, 51, 50].map(id => shopProducts.find(p => p.id === id)
   </section>
 
   <!-- ══════════════════════════════
-       MAGASIN ARKIV
+       GALLERI
   ══════════════════════════════ -->
   <section class="border-b border-gray-100">
-
     <div class="px-6 md:px-20 pt-12 md:pt-24 pb-8 md:pb-16 flex items-center justify-between">
-      <p class="text-[10px] tracking-widest uppercase text-gray-400">Magasin Arkiv</p>
-      <a href="/magasin-arkiv" class="text-[10px] tracking-widest uppercase text-gray-400 hover:text-black transition-colors">Se alle udgaver →</a>
+      <p class="text-[10px] tracking-widest uppercase text-gray-400">Galleri</p>
+      <a href="/galleri" class="text-[10px] tracking-widest uppercase text-gray-400 hover:text-black transition-colors">Se galleri →</a>
     </div>
-
-    <div class="grid grid-cols-2 md:grid-cols-4">
+    <div class="grid grid-cols-1 sm:grid-cols-3">
       {[
-        { n: 341, img: "/forsider/EUW 2026 341 ForsideFinal.jpg",  current: true },
-        { n: 310, img: "/forsider/EUW 2023 310 Forside_suit.jpg",  current: false },
-        { n: 321, img: "/forsider/EUW 2024 321 ForsideFinal.jpg",  current: false },
-        { n: 324, img: "/forsider/24_dk_euw_324_001_Bathtub.jpg",  current: false },
-      ].map((m, i) => (
-        <a href="/magasin-arkiv" class={`group flex flex-col p-4 md:p-10 border-t border-gray-100 ${i % 2 === 0 ? 'border-r md:border-r-0 border-gray-100' : ''} ${i < 3 ? 'md:border-r border-gray-100' : ''}`}>
-          <img src={m.img} alt={`Eurowoman nr. ${m.n}`} class="w-full h-auto max-h-[540px] object-contain group-hover:scale-[1.02] transition-transform duration-500" />
-          <div class="mt-4">
-            <p class="text-[10px] tracking-widest uppercase text-gray-400">Nr. {m.n}</p>
-            {m.current && <p class="text-[10px] tracking-widest uppercase text-black mt-1">I salg nu</p>}
-          </div>
+        { src: "/kampagner/Acne x Willow_FW24 Campaign_No Logo_2x3_1.jpg", caption: "Acne Studios × Willow Smith, FW24" },
+        { src: "/kampagner/Acne x willow_FW24 Campaign_No Logo_2x3_7.jpg", caption: "Acne Studios × Willow Smith, FW24" },
+        { src: "/kampagner/Acne x willowFW24 Campaign_No Logo_2x3_8.jpg",  caption: "Acne Studios × Willow Smith, FW24" },
+      ].map((img) => (
+        <a href="/galleri" class="group flex flex-col p-4 md:p-10 border-t border-gray-100">
+          <img
+            src={img.src}
+            alt={img.caption}
+            class="w-full h-auto max-h-[300px] md:max-h-[560px] object-contain group-hover:scale-[1.02] transition-transform duration-500"
+          />
+          <p class="mt-4 text-[10px] tracking-widest uppercase text-gray-400">{img.caption}</p>
         </a>
       ))}
     </div>
-
   </section>
 
   <!-- ══════════════════════════════
        ABONNENT
   ══════════════════════════════ -->
-  <section class="flex flex-col items-center justify-center text-center px-6 md:px-20 py-20 md:py-0" style="min-height:660px;">
-    <p class="text-[10px] tracking-widest uppercase text-gray-400 mb-14">Abonnent</p>
-    <div class="w-px h-12 bg-gray-200 mb-14"></div>
-    <h2 class="text-3xl md:text-5xl font-bold leading-tight max-w-xl mb-8">
+  <section class="flex flex-col items-center justify-center text-center px-6 md:px-20 py-16 md:py-0" style="min-height:660px;">
+    <p class="text-[10px] tracking-widest uppercase text-gray-400 mb-8 md:mb-14">Abonnent</p>
+    <div class="w-px h-12 bg-gray-200 mb-8 md:mb-14"></div>
+    <h2 class="text-3xl md:text-5xl font-bold leading-tight max-w-xl mb-6 md:mb-8">
       Få magasinet leveret direkte til din dør
     </h2>
-    <p class="text-sm text-gray-400 mb-16">12 udgaver om året · Fra 249 kr.</p>
+    <p class="text-sm text-gray-400 mb-10 md:mb-16">12 udgaver om året · Fra 249 kr.</p>
     <a href="/abonner" class="border border-black text-[10px] tracking-widest uppercase px-14 py-5 hover:bg-black hover:text-white transition-colors duration-300">
       Se abonnementer
     </a>
