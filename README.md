@@ -1,29 +1,57 @@
-# Astro Tailwind Starter til at lave fede og flotte websites
+# Eurowoman – Eksamensprojekt
 
-Clone github repo'et i VSCode eller lav et nyt repo på basis af templaten, og klon derfra
+Et digitalt magasinunivers bygget som eksamensprojekt på multimediedesigneruddannelsen.
 
-Åbn terminalen og kør:
+**Live site:** [eurowoman-eksamen.netlify.app](https://eurowoman-eksamen.netlify.app)
 
-```sh
+---
+
+## Om projektet
+
+Projektet er en frontend-fortolkning af Eurowomans nuværende website ([eurowoman.dk](https://www.eurowoman.dk/)), som ligger under medieplatformen mitblad.dk. Målet har været at genskabe og videreudvikle sidens udtryk og struktur — fra redaktionelt indhold og magasinarkiv til e-handel og abonnementsunivers.
+## Sider
+
+| Side | Beskrivelse |
+|------|-------------|
+| Forside | Hero-sektion, magasinnyheder og kampagnebilleder |
+| Artikler | Artikliste med kategorifilter og detail-sider |
+| Shop | Produktoversigt og produktsider med kurv |
+| Kurv | Interaktiv indkøbskurv med Alpine.js store |
+| Magasin Arkiv | Arkiv over tidligere udgivelser med filtervisning |
+| Redaktion | Om Eurowoman og redaktionen |
+| Galleri | Billedgalleri |
+| Abonnér | Abonnementsplaner og tilmelding |
+| Login | Log ind og registrer konto |
+
+## Teknologier
+
+- **[Astro](https://astro.build/)** — statisk site-generator med komponentbaseret arkitektur
+- **[Tailwind CSS](https://tailwindcss.com/)** — utility-first CSS framework
+- **[Alpine.js](https://alpinejs.dev/)** — reaktiv UI til kurv, søgning, menuer og overlays
+
+## Funktioner
+
+- Responsivt design (mobil, tablet, desktop)
+- Hamburger-menu med slide-in overlay på mobil
+- Søgeoverlay med kategorilinks
+- Nyhedsbrevs-popup
+- Indkøbskurv med persistent Alpine.js store
+- Aktiv-tilstand i navigation på alle undersider
+- HTML-valideret uden fejl
+
+## Kom i gang
+
+```bash
+# Installer afhængigheder
 npm install
+
+# Start udviklingsserver
+npm run dev
+
+# Byg til produktion
+npm run build
 ```
 
-Så er du klar til at bruge løs af:
-[Astro](https://astro.build/)
-[Tailwind](https://tailwindcss.com/)
-[Alpine.js](https://alpinejs.dev/)
-[Motion One](https://motion.dev/) 
+---
 
-Og følgende Tailwind plugins og godbidder:
-[Tailwind Typography](https://github.com/tailwindlabs/tailwindcss-typography)
-[Tailwind Forms](https://github.com/tailwindlabs/tailwindcss-forms)
-[Tailwind Animated](https://www.tailwindcss-animated.com/)
-[Tailwind Intersect](https://github.com/heidkaemper/tailwindcss-intersect) 
-[Hero icons](https://heroicons.com/)
-[Hero patterns](https://heropatterns.com/)
-
-Og du kan altid installere flere stumper, hvis du får brug for det:-)
-
-## 🚀 Hav det sjovt
-
-Men vigtigst af alt: Lav noget flot:-)
+*Eksamensprojekt – Multimediedesigner, 2026*

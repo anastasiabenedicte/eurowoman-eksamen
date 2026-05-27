@@ -69,10 +69,10 @@ const pathname = Astro.url.pathname;
   <div class="hidden md:flex border-b border-gray-200 px-6 py-3 items-center gap-6 overflow-x-auto md:justify-center">
     <a href="/artikler" class={`text-xs tracking-widest uppercase transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${pathname.startsWith('/artikler') ? 'border-b border-black pb-px text-black' : 'text-gray-400 hover:text-black'}`}>Artikler</a>
     <a href="/shop" class={`text-xs tracking-widest uppercase transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${pathname.startsWith('/shop') ? 'border-b border-black pb-px text-black' : 'text-gray-400 hover:text-black'}`}>Shop</a>
-    <a href="/eurowoman" class={`text-xs tracking-widest uppercase transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${pathname === '/eurowoman' ? 'border-b border-black pb-px text-black' : 'text-gray-400 hover:text-black'}`}>Redaktion</a>
-    <a href="/magasin-arkiv" class={`text-xs tracking-widest uppercase transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${pathname === '/magasin-arkiv' ? 'border-b border-black pb-px text-black' : 'text-gray-400 hover:text-black'}`}>Magasin Arkiv</a>
-    <a href="/abonner" class={`text-xs tracking-widest uppercase transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${pathname === '/abonner' ? 'border-b border-black pb-px text-black' : 'text-gray-400 hover:text-black'}`}>Abonnent</a>
-    <a href="/galleri" class={`text-xs tracking-widest uppercase transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${pathname === '/galleri' ? 'border-b border-black pb-px text-black' : 'text-gray-400 hover:text-black'}`}>Galleri</a>
+    <a href="/eurowoman" class={`text-xs tracking-widest uppercase transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${pathname.startsWith('/eurowoman') ? 'border-b border-black pb-px text-black' : 'text-gray-400 hover:text-black'}`}>Redaktion</a>
+    <a href="/magasin-arkiv" class={`text-xs tracking-widest uppercase transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${pathname.startsWith('/magasin-arkiv') ? 'border-b border-black pb-px text-black' : 'text-gray-400 hover:text-black'}`}>Magasin Arkiv</a>
+    <a href="/abonner" class={`text-xs tracking-widest uppercase transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${pathname.startsWith('/abonner') ? 'border-b border-black pb-px text-black' : 'text-gray-400 hover:text-black'}`}>Abonnent</a>
+    <a href="/galleri" class={`text-xs tracking-widest uppercase transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${pathname.startsWith('/galleri') ? 'border-b border-black pb-px text-black' : 'text-gray-400 hover:text-black'}`}>Galleri</a>
   </div>
 
   <!-- Menu overlay -->
