@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "no-inline-style": "off",
+    "no-dup-class": "off",
+    "tel-non-breaking": "off"
+  }
+}
