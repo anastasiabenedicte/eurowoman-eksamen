@@ -1,55 +1,71 @@
 ---
 ---
-<section class="grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+<section class="grid grid-cols-1 md:grid-cols-2 min-h-screen overflow-hidden">
 
-  <!-- Venstre: seneste magasin -->
-  <div class="bg-gray-100 flex flex-col items-center justify-center py-10 px-6 md:py-16 md:px-20 gap-6">
-    <div style="filter: drop-shadow(0 20px 40px rgba(0,0,0,0.18));">
-      <img
-        src="/forsider/EUW 2026 341 ForsideFinal.jpg"
-        alt="Eurowoman nr. 341"
-        class="w-full h-auto object-cover max-h-[75vh]"
-      />
-    </div>
-    <div class="flex items-center gap-4">
-      <span class="text-[10px] tracking-widest uppercase text-gray-400">Nr. 341</span>
-      <span class="w-px h-3 bg-gray-300"></span>
-      <span class="text-[10px] tracking-widest uppercase text-gray-400">Juni 2026</span>
-      <span class="w-px h-3 bg-gray-300"></span>
-      <span class="text-[10px] tracking-widest uppercase text-black">I salg nu</span>
-    </div>
-  </div>
+  <!-- Venstre: editorial tekst-panel -->
+  <div class="relative flex flex-col justify-center p-8 md:p-14 min-h-[80vw] md:min-h-screen overflow-hidden">
 
-  <!-- Højre: tekst -->
-  <div class="flex flex-col items-center justify-between px-8 py-10 md:px-16 md:py-16 text-center min-h-[60vw] md:min-h-[90vh]">
+    <!-- Baggrundsbillede -->
+    <img
+      src="/billeder/EUROWOMAN_OLOFSSON_HAMLIN__016.jpeg"
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 w-full h-full object-cover object-center"
+    />
+    <!-- Overlay: lyst for læsbarhed -->
+    <div class="absolute inset-0 bg-white/90"></div>
 
-    <!-- Top label -->
-    <span class="text-xs tracking-[0.4em] uppercase text-gray-400">
-      Siden 1998
-    </span>
-
-    <!-- Centrum: citat + knap -->
-    <div class="flex flex-col items-center gap-10">
-      <div class="w-px h-12 bg-gray-300"></div>
-
-      <p class="text-2xl leading-relaxed text-gray-900 max-w-xs font-serif">
-        Eurowoman er Danmarks førende mode- og kulturmagasin.
+    <!-- Indhold: centreret -->
+    <div class="relative z-10">
+      <p class="text-[10px] tracking-widest uppercase text-gray-500 mb-3">Eurowoman · Magasinet</p>
+      <p class="text-sm text-gray-600 leading-relaxed max-w-[300px] mb-8">
+        Danmarks mode- og kulturmagasin siden 1998 — et indvendigt blik på de historier der fortæller hvem vi er, hvad vi bærer, og hvad der bevæger os.
       </p>
-
+      <h1 class="font-serif text-[clamp(2.8rem,6vw,5rem)] leading-[0.9] tracking-tight text-gray-900 mb-5">
+        Læs med<br />hver måned.
+      </h1>
+      <p class="text-xs text-gray-600 mb-8 leading-relaxed">
+        Få adgang til alt indhold · Fra 49 kr./md. · Opsig når som helst
+      </p>
       <a
         href="/abonner"
-        class="relative group/btn border border-black text-xs tracking-widest uppercase px-16 py-4 overflow-hidden"
+        class="block w-full bg-black text-white text-xs tracking-widest uppercase py-4 text-center hover:opacity-70 transition-opacity mb-4"
       >
-        <span class="absolute inset-0 bg-black translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300 ease-out"></span>
-        <span class="relative text-black group-hover/btn:text-white transition-colors duration-300">Abonner</span>
+        Bliv abonnent
+      </a>
+      <a href="/shop" class="text-[10px] tracking-widest uppercase text-gray-500 hover:text-black transition-colors">
+        Køb løssalg →
       </a>
     </div>
 
-    <!-- Bund: scroll indikator -->
-    <div class="flex flex-col items-center gap-2">
-      <span class="text-xs tracking-widest uppercase text-gray-300">Scroll</span>
-      <div class="w-px h-8 bg-gray-200 relative overflow-hidden">
-        <div class="absolute top-0 w-full h-full bg-gray-300 animate-bounce"></div>
+  </div>
+
+  <!-- Højre: artikel-stil med gradient overlay -->
+  <div class="relative overflow-hidden min-h-[90vw] md:min-h-screen">
+
+    <img
+      src="/mennesker/IMG_6699.jpeg"
+      alt="Eurowoman nr. 341 – Juni 2026"
+      class="absolute inset-0 w-full h-full object-cover object-top"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+
+    <!-- Tekst i bunden -->
+    <div class="absolute bottom-0 left-0 right-0 px-8 md:px-12 py-8 md:py-12">
+      <span class="text-[10px] tracking-widest uppercase text-white/70 mb-3 block">Artikel</span>
+      <h2 class="font-serif text-white text-2xl md:text-4xl leading-tight mb-4">
+        Vi guider til det<br />perfekte par JEANS
+      </h2>
+      <p class="text-white/80 text-sm leading-relaxed max-w-sm mb-6">
+        Fra slim fit til wide leg — vi hjælper dig med at finde det par jeans der sidder perfekt til din krop, din stil og din hverdag.
+      </p>
+      <div class="flex items-center gap-3 text-[10px] tracking-widest uppercase text-white/60 mb-6">
+        <span>Juni 2026</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="/artikler" class="text-[10px] tracking-widest uppercase text-white border border-white/60 px-5 py-2.5 hover:bg-white hover:text-black transition-colors duration-300">
+          Læs artiklen
+        </a>
       </div>
     </div>
 

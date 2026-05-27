@@ -3,39 +3,159 @@
 @plugin '@tailwindcss/forms';
 
 @theme {
+
+  /* ─── Skrifttyper ─────────────────────────────────────── */
   --font-sans:    'Inter', system-ui, sans-serif;
   --font-serif:   'EB Garamond', Georgia, serif;
   --font-display: 'Gloock', Georgia, serif;
 
+  /* ─── Brandfarver ─────────────────────────────────────── */
   --color-ew-white:  #FAFAFF;
-  --color-ew-light:  #EEF0F2;
-  --color-ew-ink:    #1C1C1C;
-  --color-ew-mist:   #DADDD8;
+  --color-ew-light:  #EEEDF0;
+  --color-ew-mist:   #D8D6D3;
+  --color-ew-ink:    #1C1917;
 
+  /* ─── Gråskala (varm neutral) ─────────────────────────── */
   --color-white:     #FAFAFF;
-  --color-black:     #1C1C1C;
-  --color-gray-50:   #FAFAFF;
-  --color-gray-100:  #EEF0F2;
-  --color-gray-200:  #DADDD8;
-  --color-gray-300:  #DADDD8;
-  --color-gray-400:  #DADDD8;
-  --color-gray-500:  #DADDD8;
-  --color-gray-600:  #1C1C1C;
-  --color-gray-700:  #1C1C1C;
-  --color-gray-800:  #1C1C1C;
-  --color-gray-900:  #1C1C1C;
+  --color-black:     #1C1917;
 
+  --color-gray-50:   #FAFAF9;
+  --color-gray-100:  #F0EFED;
+  --color-gray-200:  #E2E0DC;
+  --color-gray-300:  #C9C6C0;
+  --color-gray-400:  #A09C96;
+  --color-gray-500:  #79746E;
+  --color-gray-600:  #57534E;
+  --color-gray-700:  #3B3835;
+  --color-gray-800:  #282420;
+  --color-gray-900:  #1C1917;
+
+  /* ─── Tracking ────────────────────────────────────────── */
   --tracking-editorial: -0.01em;
+  --tracking-ui:        0.15em;
 
-  --text-label:   0.625rem;
-  --text-caption: 0.75rem;
-  --text-body:    0.875rem;
-  --text-reading: 1rem;
-  --text-lead:    1.125rem;
-  --text-title:   1.5rem;
-  --text-heading: 2.25rem;
-  --text-display: 3rem;
-  --text-popup:   clamp(1.8rem, 2.8vw, 2.4rem);
+}
+
+/* ══════════════════════════════════════════════════════════
+   TYPOGRAFISYSTEM
+   Navngivne roller — brug disse klasser konsekvent i HTML.
+
+   OVERSKRIFTER (font: Inter, bold)
+     .type-h1      Stor sidetitel / hero-overskrift
+     .type-h2      Sektionsoverskrift / featured artikel
+     .type-h3      Kortoverskrift / kortliste
+
+   REDAKTIONEL TEKST (font: EB Garamond)
+     .type-quote   Citater og redaktionelle kaptioner
+
+   BRØDTEKST (font: Inter)
+     .type-body    Standard brødtekst
+     .type-body-sm Sekundær tekst / billedtekst
+
+   UI-TEKST (font: Inter, uppercase + tracking)
+     .type-label   Kategorietiket / sektionsnavn
+     .type-btn     Knaptekst (kombiner med border/bg)
+     .type-link    Tekstlink med hover-overgang
+
+   STØRRELSER (px)
+     label / btn / link  → 10px
+     body-sm             → 12px
+     body                → 14px
+     h3                  → 20–24px
+     h2                  → 24–40px
+     h1                  → 36–48px
+     quote               → 20–24px (serif)
+══════════════════════════════════════════════════════════ */
+
+@layer components {
+
+  /* ─── Overskrifter ────────────────────────────────────── */
+
+  .type-h1 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: clamp(2.25rem, 5vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--color-ew-ink);
+  }
+
+  .type-h2 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    line-height: 1.2;
+    color: var(--color-ew-ink);
+  }
+
+  .type-h3 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    line-height: 1.3;
+    color: var(--color-ew-ink);
+  }
+
+  /* ─── Redaktionel tekst (serif) ─────────────────────── */
+
+  .type-quote {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    line-height: 1.6;
+    letter-spacing: var(--tracking-editorial);
+    color: var(--color-gray-900);
+  }
+
+  /* ─── Brødtekst ──────────────────────────────────────── */
+
+  .type-body {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-gray-600);
+  }
+
+  .type-body-sm {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: var(--color-gray-600);
+  }
+
+  /* ─── UI-tekst ───────────────────────────────────────── */
+
+  .type-label {
+    font-family: var(--font-sans);
+    font-size: 0.625rem;
+    font-weight: 400;
+    letter-spacing: var(--tracking-ui);
+    text-transform: uppercase;
+    color: var(--color-gray-400);
+  }
+
+  .type-btn {
+    font-family: var(--font-sans);
+    font-size: 0.625rem;
+    font-weight: 400;
+    letter-spacing: var(--tracking-ui);
+    text-transform: uppercase;
+  }
+
+  .type-link {
+    font-family: var(--font-sans);
+    font-size: 0.625rem;
+    font-weight: 400;
+    letter-spacing: var(--tracking-ui);
+    text-transform: uppercase;
+    color: var(--color-gray-400);
+    transition: color 0.2s;
+  }
+
+  .type-link:hover {
+    color: var(--color-ew-ink);
+  }
+
 }
 
 @layer base {
