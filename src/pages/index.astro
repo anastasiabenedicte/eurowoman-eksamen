@@ -25,9 +25,9 @@ const shopItems = [66, 56, 51, 50].map(id => shopProducts.find(p => p.id === id)
 
     <div class="grid grid-cols-2 md:grid-cols-4">
       {[
-        { n: 341, img: "/forsider/EUW 2026 341 ForsideFinal.jpg",   current: true },
-        { n: 310, img: "/forsider/EUW 2023 310 Forside_suit.jpg",   current: false },
-        { n: 311, img: "/forsider/EUW 2023 311 Forside_spot.jpg",   current: false },
+        { n: 341, img: "/forsider/EUW-2026-341-ForsideFinal.jpg",   current: true },
+        { n: 310, img: "/forsider/EUW-2023-310-Forside_suit.jpg",   current: false },
+        { n: 311, img: "/forsider/EUW-2023-311-Forside_spot.jpg",   current: false },
         { n: 324, img: "/forsider/24_dk_euw_324_001_Tshirt.jpg",    current: false },
       ].map((m, i) => (
         <a href="/magasin-arkiv" class={`group flex flex-col p-4 md:p-10 border-t border-gray-100 ${i % 2 === 0 ? 'border-r md:border-r-0 border-gray-100' : ''} ${i < 3 ? 'md:border-r border-gray-100' : ''}`}>
@@ -149,9 +149,9 @@ const shopItems = [66, 56, 51, 50].map(id => shopProducts.find(p => p.id === id)
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-3">
       {[
-        { src: "/kampagner/Acne x Willow_FW24 Campaign_No Logo_2x3_1.jpg", caption: "Acne Studios × Willow Smith, FW24" },
-        { src: "/kampagner/Acne x willow_FW24 Campaign_No Logo_2x3_7.jpg", caption: "Acne Studios × Willow Smith, FW24" },
-        { src: "/kampagner/Acne x willowFW24 Campaign_No Logo_2x3_8.jpg",  caption: "Acne Studios × Willow Smith, FW24" },
+        { src: "/kampagner/Acne-x-Willow_FW24-Campaign_No-Logo_2x3_1.jpg", caption: "Acne Studios × Willow Smith, FW24" },
+        { src: "/kampagner/Acne-x-willow_FW24-Campaign_No-Logo_2x3_7.jpg", caption: "Acne Studios × Willow Smith, FW24" },
+        { src: "/kampagner/Acne-x-willowFW24-Campaign_No-Logo_2x3_8.jpg",  caption: "Acne Studios × Willow Smith, FW24" },
       ].map((img) => (
         <a href="/galleri" class="group flex flex-col p-4 md:p-10 border-t border-gray-100">
           <img

@@ -4,6 +4,7 @@ import Footer from "../components/Footer.astro";
 import NewsletterPopup from "../components/NewsletterPopup.astro";
 import '../styles/tailwind.css';
 const { title } = Astro.props;
+const description = Astro.props.description || "Danmarks førende mode- og kulturmagasin siden 1998. Mode, skønhed, kultur og livsstil.";
 ---
 <html lang="da">
 	<head>
@@ -11,8 +12,8 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content={Astro.props.description} />
-		<meta property="og:description" content={Astro.props.description} />
+		<meta name="description" content={description} />
+		<meta property="og:description" content={description} />
 		<meta property="og:locale" content="da_DK" />
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={Astro.props.title} />
