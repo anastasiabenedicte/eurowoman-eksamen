@@ -10,13 +10,13 @@
   --font-display: 'Gloock', Georgia, serif;
 
   /* ─── Brandfarver ─────────────────────────────────────── */
-  --color-ew-white:  #FAFAFF;
+  --color-ew-white:  #FAFAFA;
   --color-ew-light:  #EEEDF0;
   --color-ew-mist:   #D8D6D3;
   --color-ew-ink:    #1C1917;
 
   /* ─── Gråskala (varm neutral) ─────────────────────────── */
-  --color-white:     #FAFAFF;
+  --color-white:     #FAFAFA;
   --color-black:     #1C1917;
 
   --color-gray-50:   #FAFAF9;
